@@ -68,9 +68,9 @@ killall -9 simpleos drastic hangmon 2>/dev/null; for d in /proc/[0-9]*; do c=$(t
 5.  You will be asked if you want to install, click **A** to accept
 6.  Wait for the installation process to finish
 7. The device will now reboot into the updated version of SimpleOS
-\
-\
-**If you have no access to WiFi on your device**
+
+
+**If you don't have access to WiFi on your device**
 1. Download the latest release of **SimpleOS** on [github](https://github.com/boorngos/SimpleOS/releases)
 2. Turn off your console and insert the SD card inside your PC
 4. Put the .zip with the latest release you download inside the *root* of your SD card
