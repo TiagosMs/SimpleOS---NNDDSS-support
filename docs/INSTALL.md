@@ -46,7 +46,7 @@ firmware.
 Games go in `simpleos/games` and/or the stock NDS folder (`Roms/NDS`).
 
 ## Update
-⚠️**If you are on version 1.0**⚠️
+### ⚠️If you are on version 1.0⚠️
 1. Download version 1.1 from the release page
 2. Extract the .zip file into **SimpleOS-RGDS-20260912**
 3. Turn on WiFi and SSH on your device if they are off
@@ -60,7 +60,7 @@ killall -9 simpleos drastic hangmon 2>/dev/null; for d in /proc/[0-9]*; do c=$(t
 ```
 9. SimpleOS should restart and you should see all the latest changes
 
-**From version 1.1 onwards**
+### From version 1.1 onwards
 1. Turn on WiFi connection from the **Network settings** on your device
 2. Open the **Settings** menu and select the **Update** option
 3. Select **OTA**
