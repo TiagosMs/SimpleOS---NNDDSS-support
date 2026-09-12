@@ -11,7 +11,6 @@ Default is **High performance** (`power=3` in `userdata/settings.ini`).
 | Action | Control |
 | --- | --- |
 | Open the list | START → **Power management** |
-| Pick a profile | D-pad / stick / touch, then A |
 | One step up / down | **Anbernic** button + right analog up / down |
 
 Works on the home screen and in-game. The battery icon (and the OSD) show:
