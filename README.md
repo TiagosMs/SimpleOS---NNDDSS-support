@@ -67,3 +67,4 @@ Complete tables for home, options, and in-game:
 ## Credits
 - [MechanicalDragon0687](https://github.com/MechanicalDragon0687) - for his work on [ndsForwarder](https://github.com/MechanicalDragon0687/NDSForwarder?tab=readme-ov-file) that helped massively on how to retrieve menu images from nds game backups
 - [Shauninman](https://github.com/shauninman.com) - for the general idea and layout of the OS
+- [jdgleaver](https://github.com/jdgleaver) - for the shader pack used in SimpleOS
