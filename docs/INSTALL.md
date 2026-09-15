@@ -61,7 +61,7 @@ killall -9 simpleos drastic hangmon 2>/dev/null; for d in /proc/[0-9]*; do c=$(t
 9. SimpleOS should restart and you should see all the latest changes
 
 ### From version 1.1 onwards
-**If you have WiFi accessible on your device**🛜
+**If you have WiFi access on your device**🛜
 1. Turn on WiFi connection from the **Network settings** on your device
 2. Open the **Settings** menu and select the **Update** option
 3. Select **OTA**
@@ -71,7 +71,7 @@ killall -9 simpleos drastic hangmon 2>/dev/null; for d in /proc/[0-9]*; do c=$(t
 7. The device will now reboot into the updated version of SimpleOS
 
 
-**If you don't have access to WiFi on your device**❌🛜
+**If you don't have WiFi access on your device**❌🛜
 1. Download the latest release of **SimpleOS** on [github](https://github.com/boorngos/SimpleOS/releases)
 2. Turn off your console and insert the SD card inside your PC
 4. Put the .zip with the latest release you download inside the *root* of your SD card
