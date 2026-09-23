@@ -171,6 +171,30 @@ if [ -d "$HERE/nnddss_payload" ]; then
 	cp -f "$HERE/nnddss_payload/gamecontrollerdb.txt" "$DEST/gamecontrollerdb.txt" 2>/dev/null || true
 	cp -f "$HERE/nnddss_payload/tools/rgds_volume_helper.py" "$PERSIST_BASE/tools/rgds_volume_helper.py" 2>/dev/null || true
 	chmod +x "$PERSIST_BASE/tools/rgds_volume_helper.py" 2>/dev/null || true
+
+	# Configura fontes e BIOS de fábrica para o NNDDSS
+	for font in /usr/share/fonts/*/*.ttf /usr/share/fonts/*.ttf /mnt/vendor/bin/ebook/resources/fonts/*.ttf /mnt/mod/ctrl/configs/*.ttf; do
+		if [ -f "$font" ]; then
+			[ -s "$PERSIST_BASE/assets/fonts/orbitron.ttf" ] || cp -f "$font" "$PERSIST_BASE/assets/fonts/orbitron.ttf" 2>/dev/null || true
+			[ -s "$PERSIST_BASE/assets/fonts/SourceHanSansSC-Normal.ttf" ] || cp -f "$font" "$PERSIST_BASE/assets/fonts/SourceHanSansSC-Normal.ttf" 2>/dev/null || true
+			break
+		fi
+	done
+	for dir in /mnt/vendor/deep/drastic_aarch64 /mnt/vendor/deep/drastic64 /mnt/vendor/deep /oem/retro /oem/retro/system; do
+		[ -d "$dir" ] || continue
+		for b in drastic_bios_arm7.bin nds_bios_arm7.bin; do
+			[ -f "$dir/$b" ] && cp -f "$dir/$b" "$PERSIST_BASE/assets/bios/drastic_bios_arm7.bin" 2>/dev/null && cp -f "$dir/$b" "$PERSIST_BASE/User/system/drastic_bios_arm7.bin" 2>/dev/null
+			[ -f "$dir/system/$b" ] && cp -f "$dir/system/$b" "$PERSIST_BASE/assets/bios/drastic_bios_arm7.bin" 2>/dev/null && cp -f "$dir/system/$b" "$PERSIST_BASE/User/system/drastic_bios_arm7.bin" 2>/dev/null
+		done
+		for b in drastic_bios_arm9.bin nds_bios_arm9.bin; do
+			[ -f "$dir/$b" ] && cp -f "$dir/$b" "$PERSIST_BASE/assets/bios/drastic_bios_arm9.bin" 2>/dev/null && cp -f "$dir/$b" "$PERSIST_BASE/User/system/drastic_bios_arm9.bin" 2>/dev/null
+			[ -f "$dir/system/$b" ] && cp -f "$dir/system/$b" "$PERSIST_BASE/assets/bios/drastic_bios_arm9.bin" 2>/dev/null && cp -f "$dir/system/$b" "$PERSIST_BASE/User/system/drastic_bios_arm9.bin" 2>/dev/null
+		done
+		for f in nds_firmware.bin nds_firmware_modified.bin; do
+			[ -f "$dir/$f" ] && cp -f "$dir/$f" "$PERSIST_BASE/assets/bios/nds_firmware.bin" 2>/dev/null && cp -f "$dir/$f" "$PERSIST_BASE/User/system/nds_firmware.bin" 2>/dev/null
+			[ -f "$dir/system/$f" ] && cp -f "$dir/system/$f" "$PERSIST_BASE/assets/bios/nds_firmware.bin" 2>/dev/null && cp -f "$dir/system/$f" "$PERSIST_BASE/User/system/nds_firmware.bin" 2>/dev/null
+		done
+	done
 fi
 if [ -f "$HERE/NNDDSS-RGDS.sh" ]; then
 	cp -f "$HERE/NNDDSS-RGDS.sh" "$MMC/Roms/APPS/NNDDSS-RGDS.sh" 2>/dev/null || true
