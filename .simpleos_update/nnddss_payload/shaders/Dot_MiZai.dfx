@@ -1,0 +1,36 @@
+// Dot shader
+=============================================
+<options>
+name=Dot_MiZai
+textures=1
+</options>
+
+<vheader>
+// screen resolution scale (2.0 for current High-Resolution 3D Rendering)
+#define SCREEN_RES_SCALE 1.0
+// dot softness in texels; 0 enables the fast path (single texel fetch)
+#define SOFT 0
+</vheader>
+
+<fheader>
+#if GL_ES
+#ifdef GL_FRAGMENT_PRECISION_HIGH
+precision highp float;
+#else
+precision mediump float;
+#endif
+#endif
+// dot softness in texels; keep in sync with <vheader>
+#define SOFT 0
+</fheader>
+
+<texture:0>
+input=framebuffer
+min_filter=GL_NEAREST
+mag_filter=GL_NEAREST
+</texture>
+
+<pass>
+shader=Dot_MiZai.dsd
+sampler:u_texture=0
+</pass>

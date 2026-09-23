@@ -1,0 +1,49 @@
+#!/bin/sh
+# Anbernic loadapp.sh runs this after Weston and the SD mount, before dmenu.
+# This is the real boot path: long POWER must power off (no NOPOWEROFF).
+set -u
+
+unset SIMPLEOS_NOPOWEROFF
+unset SIMPLEOS_NORESUME
+unset SSH_CONNECTION
+unset SSH_CLIENT
+
+SOS=
+for d in /mnt/mmc/simpleos /mnt/SDCARD/simpleos; do
+	[ -f "$d/main.sh" ] || continue
+	SOS=$d
+	break
+done
+[ -n "$SOS" ] || exit 0
+
+restore_stock_frontend() {
+	for b in /mnt/vendor/bin/muos3.bin /mnt/vendor/bin/muos2.bin \
+		/mnt/vendor/bin/dmenu.bin /mnt/vendor/bin/MainUI /usr/bin/MainUI
+	do
+		[ -f "$b" ] && chmod a+x "$b" 2>/dev/null || true
+	done
+	if [ -n "$SOS" ] && [ -f "$SOS/userdata/stock_chmod" ]; then
+		while IFS= read -r b; do
+			[ -n "$b" ] && [ -f "$b" ] && chmod a+x "$b" 2>/dev/null || true
+		done < "$SOS/userdata/stock_chmod"
+		rm -f "$SOS/userdata/stock_chmod"
+	fi
+	rm -f /tmp/stopAPP.ini /tmp/simpleos_stock_chmod
+}
+
+if [ -f "$SOS/userdata/boot_stock" ]; then
+	restore_stock_frontend
+	exit 0
+fi
+
+killall wait.dge 2>/dev/null || true
+export SIMPLEOS_ROOT="$SOS"
+export PATH="$SOS/system/bin:${PATH:-}"
+export LD_LIBRARY_PATH="$SOS/system/lib:${LD_LIBRARY_PATH:-}"
+
+# Do not exec: if loop.sh returns (crash), retry instead of falling into dmenu.
+while [ -x "$SOS/main.sh" ] && [ ! -f "$SOS/userdata/boot_stock" ]; do
+	"$SOS/main.sh"
+	sleep 1
+done
+exit 0

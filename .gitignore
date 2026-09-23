@@ -2,3 +2,11 @@ Thumbs.db
 Desktop.ini
 .DS_Store
 *.tmp
+*.log
+simpleos/userdata/settings.ini
+simpleos/userdata/command
+simpleos/userdata/ra-session
+simpleos/userdata/boot_stock
+simpleos/userdata/install_ok
+.Trash-*
+EOF

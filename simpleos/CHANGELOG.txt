@@ -1,0 +1,121 @@
+# Changelog SimpleOS for RG DS
+
+Local packages: `releases/SimpleOS-RGDS-YYYYMMDD.zip`.
+This is not a GitHub release.
+
+## 20260915
+
+Compared to `20260914`.
+
+### Game settings
+- START → **Game settings**: global **Auto-load** / **Auto-resume** / **HIGH RES 3D** / **Shader**.
+- MENU on a highlighted title: per-game **GLOBAL** / **ON** / **OFF** (shader cycles names). **Controls** remaps that title (SimpleOS list, same look as Game settings).
+- In-game **VIDEO** writes the current game, not every title.
+
+### In-game
+- Touch on the bottom screen uses vendor `libdrastouch` (finger → stylus) as on stock Anbernic.
+- MENU → **VIDEO** → **SHADER** (LCD1x / Sharp bilinear / …): the filter covers both IPS panes. No extra small DraStic window, no upside-down copy, no blue palette. Stylus still sees the original blit.
+- **NDS Color** (and LCD1x/Sharp/zFast + NDS Color): same matrix as DraStic `nds_color` (no yellow cast).
+
+## 20260914
+
+Compared to `20260913`.
+
+### In-game menu
+- Current game: **RESUME / SAVE / LOAD / ARCHIVE / VIDEO / CONTROLS / RESET / HOME**.
+- Touch on the bottom screen highlights a voice; a second tap confirms. Works in the DraStic overlay (MENU), **VIDEO**, and **CONTROLS**, not only on home.
+- **VIDEO** legend: **←/→** (no jdgleaver credit on screen). Bottom: **A  APPLY HIRES**. Tap **SHADER** left/right to cycle. Shader on does not steal the in-game stylus.
+- **LCD1x** grid is even across the pane (no crowding on the right). **Sharp bilinear** uses linear sampling so it is visible vs OFF at 2.5× fill.
+- Shader on: GLES filter after the DraStic blit (stylus still sees the original `libdrastouch` copy).
+
+## 20260913
+
+Compared to `20260912`.
+
+### In-game menu
+- Current game: **RESUME / SAVE / LOAD / ARCHIVE / VIDEO / CONTROLLER MAPPING / RESET / HOME**.
+- Other title (left/right): **LOAD / ARCHIVE / HOME**.
+- **HOME** leaves DraStic and returns to the DSi home.
+
+### VIDEO
+- MENU → **VIDEO** → **HIGH RES 3D** ON / OFF.
+- Writes DraStic `hires_3d` and restarts the emulator (**Applies on restart**).
+- Best on 3D games.
+
+### CONTROLLER MAPPING
+- MENU → **CONTROLLER MAPPING**: remap DS buttons for this game only.
+- **A** bind (replace), **X** add another input (stick + D-pad on the same button).
+- Sticks count. **DEFAULT** clears.
+
+### Game settings
+- START → **Game settings**: global **Auto-load** / **Auto-resume**.
+- HOME on a highlighted title: per-game override **GLOBAL** / **ON** / **OFF**.
+
+### Network
+- First install: Wi-Fi and SSH are **off** (`userdata/net.ini`).
+- START → Network → **Wi-Fi** turns the radio on (then scan). Sleep does not bring Wi-Fi back if it is off.
+
+### Other
+- Controls documented in `docs/CONTROLS.md`.
+
+## 20260912
+
+Compared to `20260911`.
+
+### Power management
+- Three profiles: **Conservative**, **Performance**, **High performance**.
+- Power save removed: games ran too poorly.
+- Balanced was renamed Conservative.
+- START menu → Power management, or Anbernic button + right analog up/down.
+- Battery indicator: `−` / `+` / `++`.
+
+### NIGHT brightness
+- Below the daytime minimum (MENU+L1) you enter **NIGHT**.
+- Lower PWM on both IPS panels; if the panel is already at the floor, a software veil on home and in-game.
+- MENU+R1 leaves NIGHT and steps back through daytime levels.
+
+### Charge LED in sleep
+- During suspend (POWER tap / lid) the charge LED stays on if USB is connected.
+- On wake the LED returns to the stock driver.
+- Power-off (long POWER): unchanged. The PMIC drops the GPIOs; the LED comes back with the stock charge splash on the next tap.
+
+### Update from the START menu
+- Update left Network: **START → Update**.
+- Two items: **OTA** (GitHub) and **Manual update** (zip on the SD card).
+- Manual install reuses the same OTA progress screen.
+- After a successful manual update the zip is deleted.
+
+### Other
+- Brightness 0–10 (0 = NIGHT) persisted in `settings.ini`.
+- Controls documented in `docs/CONTROLS.md`.
+
+## 20260911
+
+### OTA
+- START → Network → Update: version check and install with a progress bar.
+- Back button at the bottom after the search.
+
+### Battery and status
+- Percentage to the left of the icon, enabled from the START menu.
+- Time and battery also on the second screen in the quick menu (time left, battery right).
+
+### Clock
+- Timezone change: the manual offset no longer sticks; "Updating timezone…" wait.
+- Touch: up/down arrows on date and time, tap timezone list items.
+
+### Network
+- SSH toggle: turn off and on without a reboot.
+
+### Touch in menus
+- Tapping a START item (and lists) also moves the selector, not only confirms.
+
+### In-game
+- SimpleOS menu (not DraStic): RESUME / SAVE / LOAD / ARCHIVE / RESET.
+- Mute while the panel is open; RESUME restores audio.
+- SAVED / LOADED OSD; Anbernic+L2 / Anbernic+R2.
+- RetroAchievements (unlocks in-game).
+
+### System
+- S3 sleep (POWER tap / lid), long POWER = power off.
+- Auto-resume / autoload (global and per-game).
+- Overlay on Anbernic Linux, two DSI panels, DS library only.

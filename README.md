@@ -2,69 +2,67 @@
   <img src="docs/images/logo.png" alt="SimpleOS for Anbernic RG DS" width="720">
 </p>
 
-# SimpleOS
+# SimpleOS — NNDDSS Support & Quick Stock Switch Edition
 
-**Nintendo DS** focused cfw for the [Anbernic RG DS](https://anbernic.com/).
-It features a DS-style home menu that supports both screens, and a simple in-game menu.
-Inspired by [Shauninman's](https://github.com/shauninman)
-[Dedicated OS](https://github.com/dedicated-os/dedicated-zero40)
-for the MagiXZero40. 
+Fork customizado do [SimpleOS oficial](https://github.com/boorngos/SimpleOS) por **[TiagosMs](https://github.com/TiagosMs)** para o console portátil **[Anbernic RG DS](https://anbernic.com/)**.
 
-This is **not** a fully fledged OS built from the ground up. It lays upon Anbernic's Linux OS.
-DraStic and Nintendo BIOS files are **not** distributed here; SimpleOS uses the
-copies already present on official Anbernic Linux.
+Esta edição inclui **suporte nativo e automático ao emulador NNDDSS** e um **atalho de troca rápida para o sistema original Anbernic**, direto pelo carrossel de jogos do SimpleOS.
 
+---
 
-## Purpose
+## 🌟 O que há de novo neste Fork? (Novidades & Modificações)
 
-SimpleOS replaces the multi-system frontend with a DS-only shell:
+### 1. 🚀 Suporte Integrado ao Emulador NNDDSS
+- O emulador **NNDDSS** (v1.0.1 Stable) já vem embutido no instalador do SimpleOS.
+- Ao rodar a instalação do SimpleOS, o NNDDSS é automaticamente instalado em `/mnt/vendor/deep/nnddss` e configurado no cartão SD.
+- Um gatilho chamado **`NNDDSS EMUL`** aparece na sua lista de jogos. Ao selecioná-lo:
+  - O emulador NNDDSS abre diretamente com todos os seus recursos, renderização nativa e shaders.
+  - Ao sair do NNDDSS, o console **retorna automaticamente para a interface do SimpleOS**.
 
-1. **Fast start**
-2. **DS library only** — `.nds` / `.dsi` / `.zip`. No other systems at runtime.
-3. **DSi-like UI** 
-4. **In-game menu**
+### 2. 🔄 Retorno Rápido ao Sistema Original (`Voltar Stock`)
+- Chega de ter que plugar o cartão no PC para criar arquivos manuais: o carrossel agora possui o card **`VOLTAR STOCK`**.
+- Ao clicar nele:
+  - O console aplica a flag de retorno e reinicia imediatamente no sistema padrão da Anbernic, liberando todas as outras plataformas (GBA, SNES, PS1, etc.), vídeos e APPS.
+  - Para voltar ao SimpleOS depois: basta abrir **Applications** → **APPS** → **`SimpleOS`**.
 
+### 3. ⚙️ Script `run.sh` e `loop.sh` Otimizados
+- O despachante do SimpleOS ([`run.sh`](simpleos/system/run.sh)) foi reprogramado para interceptar comandos especiais antes do DraStic.
+- O gerenciador de loop ([`loop.sh`](simpleos/system/loop.sh)) agora monitora os processos tanto do DraStic quanto do NNDDSS, garantindo transições limpas sem travar o Wayland.
 
-## Installation
+---
 
-Latest package: [`releases/SimpleOS-RGDS-20260908.zip`](https://github.com/boorngos/SimpleOS/releases/tag/V1.0-SimpleOS)
+## 📥 Como Instalar
 
-1. Flash official Anbernic Linux on the TF card.
-2. On a PC, open the user partition (the one with `Roms/`).
-3. Extract the zip **into that directory** (merge `Roms/` if Windows asks).
-4. Boot the RG DS
-5. Go into **APPS → Install SimpleOS**.
-6. Wait until the process is finished
-7. The handheld reboots into SimpleOS.
-8. If the top screen doesn't show up, click **start** → **reboot** 
+1. Baixe o pacote `.zip` da release desta versão.
+2. No seu computador, abra a partição **ROMS** do cartão SD do RG DS (onde ficam as pastas `Roms/`, `Emu/`, etc.).
+3. Extraia o conteúdo do zip diretamente na raiz dessa partição (se o sistema pedir para mesclar pastas, confirme).
+4. Ejete o cartão com segurança e ligue o console.
+5. No menu oficial da Anbernic, vá em: **Applications** → **APPS** → selecione **`Install SimpleOS`**.
+6. Aguarde as telas de splash em ambos os visores terminarem.
+7. O console reiniciará automaticamente no **SimpleOS** com o **NNDDSS** e o atalho **Voltar Stock** prontos para uso!
 
-Full steps, updates, and how to return to Anbernic stock OS:
-**[docs/INSTALL.md](docs/INSTALL.md)**
+---
 
-## Controls
+## 🎮 Controles no SimpleOS
 
-| Action | Control |
-| --- | --- |
-| Open / close in-game menu | **Home/Back** |
-| Change title in the menu | **L** / **R** (D-pad left / right) |
-| Fast-forward | **Anbernic** + **SELECT** |
-| Load / save state | **Anbernic** + **L2** / **R2** |
-| Microphone| **R3**|
-| Toggle FPS | **Anbernic** + **X** |
-| Brightness | **Anbernic** + **L1** / **R1** |
-| Sleep | Tap **POWER** or close the lid |
-| Power off | Hold **POWER** |
+| Ação | Comando |
+| :--- | :--- |
+| Abrir / Fechar menu in-game | **Home / Back (Menu)** |
+| Navegar no menu | **D-Pad Esquerda / Direita** |
+| Avanço rápido (Fast-Forward) | **Anbernic** + **SELECT** |
+| Salvar / Carregar State | **Anbernic** + **L2** / **R2** |
+| Microfone virtual | **R3** (clique do analógico direito) |
+| Alternar contador de FPS | **Anbernic** + **X** |
+| Controle de Brilho | **Anbernic** + **L1** (diminui) / **R1** (aumenta) |
+| Modo noturno (Night Mode) | Abaixo do nível mínimo de brilho |
+| Suspender (Sleep) | Toque rápido no botão **POWER** ou feche a tampa |
+| Desligar console | Segure o botão **POWER** |
 
-Complete tables for home, options, and in-game:
-**[docs/CONTROLS.md](docs/CONTROLS.md)**
+---
 
-## Showcase trailer
+## 📜 Créditos e Licença
 
-<a href="https://youtu.be/VN8mWzVBWzw" target="_blank">
- <img src="http://img.youtube.com/vi/VN8mWzVBWzw/maxresdefault.jpg" alt="Watch the video" width="1920" height="1080" border="10" />
-</a>
-
-## Credits
-- [MechanicalDragon0687](https://github.com/MechanicalDragon0687) - for his work on [ndsForwarder](https://github.com/MechanicalDragon0687/NDSForwarder?tab=readme-ov-file) that helped massively on how to retrieve menu images from nds game backups
-- [Shauninman](https://github.com/shauninman.com) - for the general idea and layout of the OS
-- [jdgleaver](https://github.com/jdgleaver) - for the shader pack used in SimpleOS
+- **[boorngos](https://github.com/boorngos/SimpleOS)** — Criador do SimpleOS original para o RG DS.
+- **[TiagosMs](https://github.com/TiagosMs)** — Customização, integração do NNDDSS e sistema de retorno ao Stock OS.
+- Comunidade NNDDSS RG DS — Pelos patches estáveis e wrappers do NNDDSS.
+- Licença: **MIT License**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
