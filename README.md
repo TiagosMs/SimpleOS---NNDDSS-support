@@ -4,65 +4,65 @@
 
 # SimpleOS — NNDDSS Support & Quick Stock Switch Edition
 
-Fork customizado do [SimpleOS oficial](https://github.com/boorngos/SimpleOS) por **[TiagosMs](https://github.com/TiagosMs)** para o console portátil **[Anbernic RG DS](https://anbernic.com/)**.
+Custom fork of the official [SimpleOS](https://github.com/boorngos/SimpleOS) by **[TiagosMs](https://github.com/TiagosMs)** for the **[Anbernic RG DS](https://anbernic.com/)** handheld console.
 
-Esta edição inclui **suporte nativo e automático ao emulador NNDDSS** e um **atalho de troca rápida para o sistema original Anbernic**, direto pelo carrossel de jogos do SimpleOS.
-
----
-
-## 🌟 O que há de novo neste Fork? (Novidades & Modificações)
-
-### 1. 🚀 Suporte Integrado ao Emulador NNDDSS
-- O emulador **NNDDSS** (v1.0.1 Stable) já vem embutido no instalador do SimpleOS.
-- Ao rodar a instalação do SimpleOS, o NNDDSS é automaticamente instalado em `/mnt/vendor/deep/nnddss` e configurado no cartão SD.
-- Um gatilho chamado **`NNDDSS EMUL`** aparece na sua lista de jogos. Ao selecioná-lo:
-  - O emulador NNDDSS abre diretamente com todos os seus recursos, renderização nativa e shaders.
-  - Ao sair do NNDDSS, o console **retorna automaticamente para a interface do SimpleOS**.
-
-### 2. 🔄 Retorno Rápido ao Sistema Original (`Voltar Stock`)
-- Chega de ter que plugar o cartão no PC para criar arquivos manuais: o carrossel agora possui o card **`VOLTAR STOCK`**.
-- Ao clicar nele:
-  - O console aplica a flag de retorno e reinicia imediatamente no sistema padrão da Anbernic, liberando todas as outras plataformas (GBA, SNES, PS1, etc.), vídeos e APPS.
-  - Para voltar ao SimpleOS depois: basta abrir **Applications** → **APPS** → **`SimpleOS`**.
-
-### 3. ⚙️ Script `run.sh` e `loop.sh` Otimizados
-- O despachante do SimpleOS ([`run.sh`](simpleos/system/run.sh)) foi reprogramado para interceptar comandos especiais antes do DraStic.
-- O gerenciador de loop ([`loop.sh`](simpleos/system/loop.sh)) agora monitora os processos tanto do DraStic quanto do NNDDSS, garantindo transições limpas sem travar o Wayland.
+This edition features **out-of-the-box NNDDSS emulator support** and a **quick switch shortcut to the original Anbernic Stock OS**, directly accessible from the SimpleOS game carousel.
 
 ---
 
-## 📥 Como Instalar
+## 🌟 What's New in this Fork?
 
-1. Baixe o pacote `.zip` da release desta versão.
-2. No seu computador, abra a partição **ROMS** do cartão SD do RG DS (onde ficam as pastas `Roms/`, `Emu/`, etc.).
-3. Extraia o conteúdo do zip diretamente na raiz dessa partição (se o sistema pedir para mesclar pastas, confirme).
-4. Ejete o cartão com segurança e ligue o console.
-5. No menu oficial da Anbernic, vá em: **Applications** → **APPS** → selecione **`Install SimpleOS`**.
-6. Aguarde as telas de splash em ambos os visores terminarem.
-7. O console reiniciará automaticamente no **SimpleOS** com o **NNDDSS** e o atalho **Voltar Stock** prontos para uso!
+### 1. 🚀 Out-of-the-Box NNDDSS Emulator Support
+- The **NNDDSS** emulator (v1.0.1 Stable) is directly bundled inside the SimpleOS installer.
+- When running the SimpleOS installation, NNDDSS is automatically deployed to `/mnt/vendor/deep/nnddss` and configured on the SD card.
+- A trigger named **`NNDDSS EMUL`** is pre-installed in your game library. When launched:
+  - The NNDDSS emulator opens with its native dual-screen rendering, shaders, and features.
+  - Exiting NNDDSS **returns smoothly to the SimpleOS interface**.
+
+### 2. 🔄 Quick Return to Original System (`Voltar Stock`)
+- No more taking out the SD card to create manual trigger files on a PC: a **`VOLTAR STOCK`** card is available in your carousel.
+- When selected:
+  - The console sets the boot flag and reboots directly into the official Anbernic OS, giving you access to all other platforms (GBA, SNES, PS1, etc.), video player, and stock apps.
+  - To return to SimpleOS later: go to **Applications** → **APPS** → **`SimpleOS`**.
+
+### 3. ⚙️ Optimized `run.sh` and `loop.sh`
+- The launcher dispatcher ([`run.sh`](simpleos/system/run.sh)) intercepts custom app triggers before DraStic is called.
+- The process manager ([`loop.sh`](simpleos/system/loop.sh)) monitors both DraStic and NNDDSS lifecycles, ensuring clean transitions without Wayland compositor hangs.
 
 ---
 
-## 🎮 Controles no SimpleOS
+## 📥 Installation
 
-| Ação | Comando |
+1. Download the latest `.zip` package from the [Releases](https://github.com/TiagosMs/SimpleOS---NNDDSS-support/releases) page.
+2. On your PC, open the **ROMS** partition of your RG DS SD card (the one containing `Roms/`, `Emu/`, etc.).
+3. Extract the contents of the zip file directly into the **root** of that partition (merge folders if prompted).
+4. Safely eject the SD card, insert it into the RG DS, and power on.
+5. In the official Anbernic menu, navigate to: **Applications** → **APPS** → launch **`Install SimpleOS`**.
+6. Wait for the splash screens on both displays to complete (do not power off).
+7. The device will automatically reboot into **SimpleOS** with **NNDDSS** and **Voltar Stock** ready to use!
+
+---
+
+## 🎮 Controls in SimpleOS
+
+| Action | Control |
 | :--- | :--- |
-| Abrir / Fechar menu in-game | **Home / Back (Menu)** |
-| Navegar no menu | **D-Pad Esquerda / Direita** |
-| Avanço rápido (Fast-Forward) | **Anbernic** + **SELECT** |
-| Salvar / Carregar State | **Anbernic** + **L2** / **R2** |
-| Microfone virtual | **R3** (clique do analógico direito) |
-| Alternar contador de FPS | **Anbernic** + **X** |
-| Controle de Brilho | **Anbernic** + **L1** (diminui) / **R1** (aumenta) |
-| Modo noturno (Night Mode) | Abaixo do nível mínimo de brilho |
-| Suspender (Sleep) | Toque rápido no botão **POWER** ou feche a tampa |
-| Desligar console | Segure o botão **POWER** |
+| Open / close in-game menu | **Home / Back (Menu button)** |
+| Navigate in-game menu | **D-Pad Left / Right** |
+| Fast-forward | **Anbernic** + **SELECT** |
+| Save / Load state | **Anbernic** + **L2** / **R2** |
+| Virtual microphone | **R3** (Right analog stick press) |
+| Toggle FPS counter | **Anbernic** + **X** |
+| Screen Brightness | **Anbernic** + **L1** (Decrease) / **R1** (Increase) |
+| Night mode | Below the minimum brightness level |
+| Sleep | Quick tap on **POWER** or close the lid |
+| Power off | Long press **POWER** |
 
 ---
 
-## 📜 Créditos e Licença
+## 📜 Credits and License
 
-- **[boorngos](https://github.com/boorngos/SimpleOS)** — Criador do SimpleOS original para o RG DS.
-- **[TiagosMs](https://github.com/TiagosMs)** — Customização, integração do NNDDSS e sistema de retorno ao Stock OS.
-- Comunidade NNDDSS RG DS — Pelos patches estáveis e wrappers do NNDDSS.
-- Licença: **MIT License**. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+- **[boorngos](https://github.com/boorngos/SimpleOS)** — Creator of the original SimpleOS for RG DS.
+- **[TiagosMs](https://github.com/TiagosMs)** — Customization, NNDDSS integration, and Stock OS switch feature.
+- NNDDSS RG DS Community — For the stable RG DS patches and wrappers.
+- License: **MIT License**. See [LICENSE](LICENSE) for details.
