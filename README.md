@@ -60,6 +60,17 @@ This edition features **out-of-the-box NNDDSS emulator support** and a **quick s
 
 ---
 
+## 🔧 Troubleshooting
+
+### Black screen when opening NNDDSS (returns to SimpleOS after 2 seconds)
+If launching `NNDDSS EMUL` flashes a black screen for a couple of seconds and drops back to the SimpleOS main menu:
+1. Select the **`VOLTAR STOCK`** card in SimpleOS to enter the stock Anbernic system.
+2. In the Anbernic menu, navigate to **Applications** → **APPS**.
+3. Run **`NNDDSS-RGDS-install.sh`** (this automatically links the necessary system fonts and stock DraStic BIOS into the `.nnddss-rgds/` directory).
+4. Launch **`SimpleOS`** from **APPS** to return to SimpleOS. NNDDSS will now open properly.
+
+---
+
 ## 📜 Credits and License
 
 - **[boorngos](https://github.com/boorngos/SimpleOS)** — Creator of the original SimpleOS for RG DS.
